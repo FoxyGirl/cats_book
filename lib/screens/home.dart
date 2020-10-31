@@ -42,8 +42,10 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () => navigator.push<void>(MarketPlace().route),
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(0),
+                  shape: const StadiumBorder(),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: const ShapeDecoration(
+                      shape: const StadiumBorder(),
                       gradient: LinearGradient(
                         colors: <Color>[
                           Color(0xFF0D47A1),
