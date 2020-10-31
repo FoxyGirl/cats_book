@@ -9,6 +9,7 @@ export 'main.dart';
 export 'models/confirmed_password.dart';
 export 'models/email.dart';
 export 'models/password.dart';
+export 'models/cat.dart';
 export 'models/user.dart';
 export 'repositories/authentication.dart';
 export 'screens/home.dart';
