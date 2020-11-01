@@ -115,4 +115,5 @@ const catsJSON = [
   }
 ];
 
-List<CatModel> catsList = catsJSON.map((x) => CatModel.fromJson(x));
+// Fix getting list from JSON
+List<CatModel> catsList = catsJSON.map((x) => CatModel.fromJson(x)).toList();
