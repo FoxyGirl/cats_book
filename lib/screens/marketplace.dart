@@ -13,22 +13,50 @@ class MarketPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(catsJSON.runtimeType);
-    print('catsList ${catsList.runtimeType} ${catsList.length}');
-    var cat = catsList[0];
-    print('first act = ${cat.name}');
+    // print(catsJSON.runtimeType);
+    // print('catsList ${catsList.runtimeType} ${catsList.length}');
+    // var cat = catsList[0];
+    // print('first cat = ${cat.name}');
 
     return Scaffold(
-      appBar: AppBar(title: const Text('MarketPlace')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Text(
-            'MarketPlace',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-    );
+        appBar: AppBar(title: const Text('MarketPlace')),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                right: 16,
+                left: 16,
+                top: 16,
+                bottom: 32,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Filters:"),
+                  Text("Mating"),
+                  Text("Adoption"),
+                  Text("Disappear"),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: GridView.count(
+                  physics: BouncingScrollPhysics(),
+                  childAspectRatio: 1 / 1.65,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  children: catsList.map((cat) {
+                    int index = catsList.indexOf(cat);
+                    return CatWidget(cat: cat, index: index);
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }

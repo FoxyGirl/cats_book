@@ -18,3 +18,4 @@ export 'screens/sign_up.dart';
 export 'screens/splash.dart';
 export 'screens/marketplace.dart';
 export 'widgets/avatar.dart';
+export 'widgets/cat.dart';
