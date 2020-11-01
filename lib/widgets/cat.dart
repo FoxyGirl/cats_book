@@ -14,7 +14,10 @@ class CatWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('Tap!');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CatDetailScreen(cat: cat)),
+        );
       },
       child: Container(
         decoration: BoxDecoration(

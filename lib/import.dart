@@ -17,5 +17,6 @@ export 'screens/login.dart';
 export 'screens/sign_up.dart';
 export 'screens/splash.dart';
 export 'screens/marketplace.dart';
+export 'screens/cat_detail.dart';
 export 'widgets/avatar.dart';
 export 'widgets/cat.dart';
