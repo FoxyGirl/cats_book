@@ -109,18 +109,6 @@ class CatWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    cat.name,
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.blue,
-                    thickness: 2,
-                  ),
-                  Text(
                     cat.breed,
                     style: TextStyle(
                       color: Colors.grey[800],

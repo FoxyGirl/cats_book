@@ -35,14 +35,7 @@ class CatDetailScreen extends StatelessWidget {
               ),
             ),
           ],
-          // title: const Text('MarketPlace'),
         ),
-        // body: Container(
-        //   child: Center(
-        //     // child: Text("PetDetailWidget"),
-        //     child: CatWidget(cat: cat, index: null),
-        //   ),
-        // ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -81,26 +74,11 @@ class CatDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                cat.name,
+                                cat.breed,
                                 style: TextStyle(
                                   color: Colors.grey[800],
                                   fontWeight: FontWeight.bold,
                                   fontSize: 24,
-                                ),
-                              ),
-                              // Divider(
-                              //   color: Colors.blue,
-                              //   thickness: 2,
-                              // ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                cat.breed,
-                                style: TextStyle(
-                                  color: Colors.blue[800],
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
                                 ),
                               ),
                             ],
