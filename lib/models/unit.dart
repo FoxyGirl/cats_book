@@ -10,7 +10,6 @@ part 'unit.g.dart';
 class UnitModel extends Equatable {
   UnitModel({
     this.id,
-    this.category,
     this.breed,
     this.color,
     this.weight,
@@ -18,14 +17,12 @@ class UnitModel extends Equatable {
     this.member,
     this.imageUrl,
     this.condition,
-    this.birthDate,
+    this.birthday,
     this.address,
     this.location,
-    this.createdAt,
   });
 
   final String id;
-  final CategoryModel category;
   final BreedModel breed;
   final String color;
   final double weight;
@@ -33,15 +30,13 @@ class UnitModel extends Equatable {
   final MemberModel member;
   final String imageUrl;
   final ConditionValue condition;
-  final DateTime birthDate;
+  final DateTime birthday;
   final String address;
   final String location;
-  final DateTime createdAt;
 
   @override
   List<Object> get props => [
         id,
-        category,
         breed,
         color,
         weight,
@@ -49,10 +44,9 @@ class UnitModel extends Equatable {
         member,
         imageUrl,
         condition,
-        birthDate,
+        birthday,
         address,
         location,
-        createdAt,
       ];
 
   factory UnitModel.fromJson(Map<String, dynamic> json) =>

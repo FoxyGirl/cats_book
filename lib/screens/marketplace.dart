@@ -4,6 +4,14 @@ import 'package:cats_book/import.dart';
 import '../data.dart';
 
 class MarketPlace extends StatelessWidget {
+  const MarketPlace({
+    Key key,
+    @required this.databaseRepository,
+  })  : assert(databaseRepository != null),
+        super(key: key);
+
+  final DatabaseRepository databaseRepository;
+
   Route get route {
     return buildRoute<void>(
       '/marketplace',
@@ -13,10 +21,11 @@ class MarketPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(catsJSON.runtimeType);
-    // print('catsList ${catsList.runtimeType} ${catsList.length}');
-    // var cat = catsList[0];
-    // print('first cat = ${cat.name}');
+    print(databaseRepository);
+    databaseRepository
+        .readUnits(categoryId: CategoryKey.cat)
+        .then((value) => out(value))
+        .catchError(print);
 
     return Scaffold(
         appBar: AppBar(title: const Text('MarketPlace')),
