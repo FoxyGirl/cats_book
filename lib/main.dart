@@ -24,7 +24,9 @@ void main() {
     await Firebase.initializeApp();
     EquatableConfig.stringify = kDebugMode;
     // Bloc.observer = SimpleBlocObserver();
-    runApp(App(authenticationRepository: AuthenticationRepository()));
+    runApp(App(
+        authenticationRepository: AuthenticationRepository(),
+        databaseRepository: DatabaseRepository()));
   }, (error, stackTrace) {
     // Whenever an error occurs, call the `_reportError` function. This sends
     // Dart errors to the dev console or Sentry depending on the environment.
@@ -36,15 +38,25 @@ class App extends StatelessWidget {
   const App({
     Key key,
     @required this.authenticationRepository,
+    @required this.databaseRepository,
   })  : assert(authenticationRepository != null),
+        assert(databaseRepository != null),
         super(key: key);
 
   final AuthenticationRepository authenticationRepository;
+  final DatabaseRepository databaseRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: authenticationRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(
+          value: authenticationRepository,
+        ),
+        RepositoryProvider.value(
+          value: databaseRepository,
+        ),
+      ],
       child: BlocProvider(
         create: (BuildContext context) =>
             AuthenticationCubit(authenticationRepository),

@@ -39,9 +39,10 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: RaisedButton(
                   key: const Key('start_raisedButton'),
-                  onPressed: () => navigator.push<void>(MarketPlace(
-                        databaseRepository: DatabaseRepository(),
-                      ).route),
+                  // onPressed: () => navigator.push<void>(MarketPlace(
+                  //       databaseRepository: DatabaseRepository(),
+                  //     ).route),
+                  onPressed: () => navigator.push<void>(StartScreen().route),
                   textColor: Colors.white,
                   padding: const EdgeInsets.all(0),
                   shape: const StadiumBorder(),
