@@ -16,7 +16,7 @@ class BreedModel extends Equatable {
 
   final String id;
   final String name;
-  final CategoryKey categoryId;
+  final String categoryId;
 
   @override
   List<Object> get props => [

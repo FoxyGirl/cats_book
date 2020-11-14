@@ -13,7 +13,7 @@ class StartCubit extends Cubit<StartState> {
 
   final DatabaseRepository repository;
 
-  Future<void> load({CategoryKey categoryId}) async {
+  Future<void> load({String categoryId}) async {
     if (state.status == StartStatus.loading) return;
     emit(state.copyWith(
       status: StartStatus.loading,

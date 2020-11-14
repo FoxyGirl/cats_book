@@ -23,7 +23,7 @@ class MarketPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     print(databaseRepository);
     databaseRepository
-        .readUnits(categoryId: CategoryKey.cat)
+        .readUnits(categoryId: 'cat')
         .then((value) => out(value))
         .catchError(print);
 

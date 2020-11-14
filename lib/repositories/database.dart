@@ -12,7 +12,7 @@ class DatabaseRepository {
 
   final GraphQLClient _client;
 
-  Future<List<UnitModel>> readUnits({@required CategoryKey categoryId}) async {
+  Future<List<UnitModel>> readUnits({@required String categoryId}) async {
     assert(categoryId != null);
     final options = QueryOptions(
       documentNode: _API.readUnits,
