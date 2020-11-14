@@ -150,6 +150,37 @@ class StartBody extends StatelessWidget {
                           category: state.categories[index], margin: margin)),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Newest Pet',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(
+                      Icons.more_horiz,
+                      color: Colors.grey[800],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 280,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    state.units.length,
+                    (index) => Unit(unit: state.units[index], index: index),
+                  ),
+                ),
+              )
             ],
           ),
         );
