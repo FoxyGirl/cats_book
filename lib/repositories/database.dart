@@ -12,12 +12,17 @@ class DatabaseRepository {
 
   final GraphQLClient _client;
 
-  Future<List<UnitModel>> readUnits({@required String categoryId}) async {
-    assert(categoryId != null);
+  Future<List<UnitModel>> readUnits(
+      {String categoryId, String query, int limit}) async {
+    assert(categoryId != null || query != null);
+    assert(limit != null);
     final options = QueryOptions(
-      documentNode: _API.readUnits,
+      documentNode:
+          (query == null) ? _API.readUnitsByCategory : _API.readUnitsByQuery,
       variables: {
-        'category_id': convertEnumToSnakeCase(categoryId),
+        if (categoryId != null) 'category_id': categoryId,
+        if (query != null) 'query': '%$query%',
+        'limit': limit,
       },
       fetchPolicy: FetchPolicy.noCache,
       errorPolicy: ErrorPolicy.all,
@@ -136,24 +141,38 @@ GraphQLClient _getClient() {
 }
 
 class _API {
-  static final readUnits = gql(r'''
-    query ReadUnits($category_id: category_key_enum!) {
-      units(where: {breed: {category_id: {_eq: $category_id}}}) {
-        id
-        breed {
-          ...BreedFields
-        }
-        color
-        weight
-        story
-        member {
-          ...MemberFields
-        }
-        image_url
-        condition
-        birthday
-        address
-        location
+  static final readUnitsByCategory = gql(r'''
+    query ReadUnitsByCategory($category_id: category_key_enum!, $limit: Int!) {
+      units(
+        where: 
+          {breed: {category_id: {_eq: $category_id}}}, 
+        order_by: {updated_at: desc},
+        limit: $limit
+      ) {
+        ...UnitFields
+      }
+    }
+  ''')..definitions.addAll(fragments.definitions);
+
+  static final readUnitsByQuery = gql(r'''
+    query ReadUnitsByQuery($query: String!, $category_id: category_key_enum, $limit: Int!) {
+      units(
+        where: 
+          {_and:
+            [
+              {_or: 
+                [
+                  {breed: {name: {_ilike: $query}}}, 
+                  {address: {_ilike: $query}},
+                ]
+              },
+              {breed: {category_id: {_eq: $category_id}}},
+            ]
+          },
+        order_by: {updated_at: desc},
+        limit: $limit
+      ) {
+        ...UnitFields
       }
     }
   ''')..definitions.addAll(fragments.definitions);
@@ -181,6 +200,28 @@ class _API {
       }
     }
   ''')..definitions.addAll(fragments.definitions);
+
+  // static final readUnits = gql(r'''
+  //   query ReadUnits($category_id: category_key_enum!) {
+  //     units(where: {breed: {category_id: {_eq: $category_id}}}) {
+  //       id
+  //       breed {
+  //         ...BreedFields
+  //       }
+  //       color
+  //       weight
+  //       story
+  //       member {
+  //         ...MemberFields
+  //       }
+  //       image_url
+  //       condition
+  //       birthday
+  //       address
+  //       location
+  //     }
+  //   }
+  // ''')..definitions.addAll(fragments.definitions);
 
   static final readBreeds = gql(r'''
     query ReadBreeds {

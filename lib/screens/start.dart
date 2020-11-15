@@ -54,9 +54,6 @@ class StartBody extends StatelessWidget {
         if (state.status == StartStatus.loading) {
           return Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                Colors.blue,
-              ),
               strokeWidth: kWidthCircularProgressIndicator,
             ),
           );
@@ -205,6 +202,7 @@ class _PetCategory extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print(category.name);
+        navigator.push(ShowcaseScreen(category: category).getRoute());
       },
       child: Container(
         padding: EdgeInsets.all(12),
