@@ -66,7 +66,7 @@ class UnitScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -136,10 +136,10 @@ class UnitScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8),
                   child: Row(
                     children: [
-                      buildPetFeature(
-                          '${unit.birthday.year}', "Age"), // TODO: format age
-                      buildPetFeature(unit.color, "Color"),
-                      buildPetFeature('${unit.weight} Kg', "Weight"),
+                      buildPetFeature('${unit.birthday.year}', "Age",
+                          1), // TODO: format age
+                      buildPetFeature(unit.color, "Color", 2),
+                      buildPetFeature('${unit.weight} Kg', "Weight", 1),
                     ],
                   ),
                 ),
@@ -244,11 +244,12 @@ class UnitScreen extends StatelessWidget {
     );
   }
 
-  buildPetFeature(String value, String feature) {
+  buildPetFeature(String value, String feature, int flexFactor) {
     return Expanded(
+      flex: flexFactor,
       child: Container(
         height: 70,
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           border: Border.all(
