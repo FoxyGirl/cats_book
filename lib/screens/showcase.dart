@@ -101,6 +101,30 @@ class ShowcaseBody extends StatelessWidget {
                 ),
               ),
             )
+          else if (state.units.length == 0)
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      'Nothing was found :(',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: RouteButton('Try again!', StartScreen().route),
+                    ),
+                  ),
+                ],
+              ),
+            )
           else
             Expanded(
               child: Padding(

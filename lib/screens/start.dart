@@ -88,7 +88,10 @@ class StartBody extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(16),
                 child: TextField(
-                  onSubmitted: (String value) => {out(value)},
+                  onSubmitted: (String value) {
+                    out(value);
+                    navigator.push(ShowcaseScreen(query: value).getRoute());
+                  },
                   decoration: InputDecoration(
                     hintText: 'Search',
                     hintStyle: TextStyle(fontSize: 16),
