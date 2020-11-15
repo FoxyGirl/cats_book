@@ -57,6 +57,7 @@ class StartBody extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(
                 Colors.blue,
               ),
+              strokeWidth: kWidthCircularProgressIndicator,
             ),
           );
         }
