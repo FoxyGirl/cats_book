@@ -34,5 +34,6 @@ export 'screens/start.dart';
 export 'screens/unit_detail.dart';
 export 'widgets/avatar.dart';
 export 'widgets/cat.dart';
+export 'widgets/route_button.dart';
 export 'widgets/unit.dart';
 export 'widgets/user_avatar.dart';
