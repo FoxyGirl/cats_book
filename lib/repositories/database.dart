@@ -155,7 +155,7 @@ class _API {
   ''')..definitions.addAll(fragments.definitions);
 
   static final readUnitsByQuery = gql(r'''
-    query ReadUnitsByQuery($query: String!, $category_id: category_key_enum, $limit: Int!) {
+    query ReadUnitsByQuery($query: String!, $category_id: String, $limit: Int!) {
       units(
         where: 
           {_and:
