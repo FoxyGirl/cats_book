@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:cats_book/import.dart';
 
 part 'unit.g.dart';
 
-@CopyWith()
 @JsonSerializable()
 class UnitModel extends Equatable {
   UnitModel({
     this.id,
-    this.breed,
-    this.color,
-    this.weight,
-    this.story,
+    this.breed, //
+    this.color, //
+    this.weight, //
+    this.story, //
     this.member,
     this.imageUrl,
-    this.condition,
-    this.birthday,
-    this.address,
-    this.location,
+    this.condition, //
+    this.birthday, //
+    this.address, //
+    // this.location, // TODO: location
   });
 
   final String id;
   final BreedModel breed;
   final String color;
-  final double weight;
+  final int weight;
   final String story;
   final MemberModel member;
   final String imageUrl;
   final ConditionValue condition;
   final DateTime birthday;
   final String address;
-  final String location;
+  // final String location;
 
   @override
   List<Object> get props => [
@@ -47,10 +45,10 @@ class UnitModel extends Equatable {
         condition,
         birthday,
         address,
-        location,
+        // location,
       ];
 
-  factory UnitModel.fromJson(Map<String, dynamic> json) =>
+  static UnitModel fromJson(Map<String, dynamic> json) =>
       _$UnitModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnitModelToJson(this);
@@ -67,6 +65,16 @@ String getConditionName(ConditionValue value) {
     ConditionValue.mating: 'Mating',
     ConditionValue.adoption: 'Adoption',
     ConditionValue.disappear: 'Disappear',
+  };
+  assert(ConditionValue.values.length == map.length);
+  return map[value];
+}
+
+String getConditionDescription(ConditionValue value) {
+  final map = {
+    ConditionValue.mating: 'Mating Description',
+    ConditionValue.adoption: 'Adoption Description',
+    ConditionValue.disappear: 'Disappear Description',
   };
   assert(ConditionValue.values.length == map.length);
   return map[value];

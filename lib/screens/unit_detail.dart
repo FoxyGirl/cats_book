@@ -19,6 +19,7 @@ class UnitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final detailedAge = getTheDetailedAge(unit.birthday.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -104,14 +105,14 @@ class UnitScreen extends StatelessWidget {
                               SizedBox(
                                 width: 4,
                               ),
-                              Text(
-                                "(" + unit.location + " km)",
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // Text(
+                              //   "(" + unit.location + " km)",
+                              //   style: TextStyle(
+                              //     color: Colors.grey[600],
+                              //     fontSize: 14,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                             ],
                           ),
                         ],
@@ -136,8 +137,10 @@ class UnitScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8),
                   child: Row(
                     children: [
-                      buildPetFeature('${unit.birthday.year}', "Age",
-                          1), // TODO: format age
+                      buildPetFeature(
+                          '${detailedAge.years} years, ${detailedAge.months} months',
+                          "Age",
+                          2), // TODO: format age
                       buildPetFeature(unit.color, "Color", 2),
                       buildPetFeature('${unit.weight} Kg', "Weight", 1),
                     ],
@@ -178,7 +181,7 @@ class UnitScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          UserAvatar(unit.member.avatarUrlOrRobohash),
+                          UserAvatar(unit.member.validImageUrl),
                           SizedBox(
                             width: 12,
                           ),
@@ -197,7 +200,7 @@ class UnitScreen extends StatelessWidget {
                                 height: 4,
                               ),
                               Text(
-                                unit.member.name,
+                                unit.member.displayName,
                                 style: TextStyle(
                                   color: Colors.grey[600],
                                   fontSize: 14,
@@ -248,9 +251,9 @@ class UnitScreen extends StatelessWidget {
     return Expanded(
       flex: flexFactor,
       child: Container(
-        height: 70,
+        height: 80,
         padding: EdgeInsets.all(8),
-        margin: EdgeInsets.symmetric(horizontal: 8),
+        margin: EdgeInsets.symmetric(horizontal: 6),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.grey[200],
@@ -266,7 +269,7 @@ class UnitScreen extends StatelessWidget {
               value,
               style: TextStyle(
                 color: Colors.grey[800],
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),

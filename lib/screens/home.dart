@@ -30,11 +30,11 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Avatar(photo: user.photo),
+            Avatar(photo: user.imageUrl),
             const SizedBox(height: 4.0),
             Text(user.email, style: textTheme.headline6),
             const SizedBox(height: 4.0),
-            Text(user.name ?? '', style: textTheme.headline5),
+            Text(user.displayName ?? '', style: textTheme.headline5),
             Padding(
               padding: EdgeInsets.all(20),
               child: RouteButton('Let`s go!', StartScreen().route),

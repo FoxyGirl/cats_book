@@ -142,7 +142,7 @@ GraphQLClient _getClient() {
 
 class _API {
   static final readUnitsByCategory = gql(r'''
-    query ReadUnitsByCategory($category_id: category_key_enum!, $limit: Int!) {
+    query ReadUnitsByCategory($category_id: String!, $limit: Int!) {
       units(
         where: 
           {breed: {category_id: {_eq: $category_id}}}, 
@@ -186,6 +186,10 @@ class _API {
         name
         color
         total_of
+        breeds(
+          order_by: {name: asc}) {
+          ...BreedFields
+        }
       }
     }
   ''')..definitions.addAll(fragments.definitions);
@@ -236,14 +240,14 @@ class _API {
       # __typename
       id
       name
-      category_id
+      # category_id
     }
 
     fragment MemberFields on member {
       # __typename
       id
-      name
-      avatar_url
+      display_name
+      image_url
     }
 
     fragment UnitFields on unit {
